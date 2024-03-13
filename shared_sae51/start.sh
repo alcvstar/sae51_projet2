@@ -7,7 +7,7 @@ sleep 10
 
 winpty docker-compose exec db mariadb -u dolibarr_user -p dolibarr_db -f init.sql
 
-DB_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' shared_sae51-db-1)
+# DB_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' shared_sae51-db-1)
 
 docker cp user.csv shared_sae51-db-1:.
 docker exec -i shared_sae51-db-1 mariadb -uroot -proot_password dolibarr_db -e "LOAD DATA LOCAL INFILE 'user.csv' INTO TABLE utilisateurs FIELDS TERMINATED BY ',' IGNORE 1 LINES;"
